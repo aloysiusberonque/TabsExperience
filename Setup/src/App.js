@@ -48,20 +48,16 @@ function App() {
         </div>
         <article className="job-info">
           <h3>{title}</h3>
-          <h4>Company</h4>
-          <p className="job-date">November 2001 - Present</p>
-          <div className="job-desc">
-            <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
-            <p>Information</p>
-          </div>
-          <div className="job-desc">
-            <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
-            <p>Information</p>
-          </div>
-          <div className="job-desc">
-            <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
-            <p>Information</p>
-          </div>
+          <h4>{company}</h4>
+          <p className="job-date">{dates}</p>
+          {duties.map((duty) => {
+            return (
+              <div key={duty.id} className="job-desc">
+                <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
+                <p>{duty}</p>
+              </div>
+            );
+          })}
         </article>
       </div>
       <button className="btn" type="button">
