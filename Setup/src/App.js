@@ -5,7 +5,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
   const [value, setValue] = useState(0);
-  // const { company } = jobs[value];
 
   const fetchJobs = async () => {
     const response = await fetch(url);
@@ -18,14 +17,15 @@ function App() {
     fetchJobs();
   }, []);
 
-  if(loading){
-    return(
+  if (loading) {
+    return (
       <section className="section loading">
         <h1>Loading ...</h1>
       </section>
-    )
+    );
   }
 
+  const { title, dates, duties, company } = jobs[value];
   return (
     <section className="section">
       <div className="title">
@@ -34,12 +34,20 @@ function App() {
       </div>
       <div className="jobs-center">
         <div className="btn-container">
-          <button className="job-btn">Company Name</button>
-          <button className="job-btn">Company Name</button>
-          <button className="job-btn">Company Name</button>
+          {jobs.map((item, index) => {
+            return (
+              <button
+                key={item.id}
+                onClick={() => setValue(index)}
+                className={`job-btn ${index === value && "active-btn"}`}
+              >
+                {item.company}
+              </button>
+            );
+          })}
         </div>
         <article className="job-info">
-          <h3>Title</h3>
+          <h3>{title}</h3>
           <h4>Company</h4>
           <p className="job-date">November 2001 - Present</p>
           <div className="job-desc">
